@@ -2,12 +2,26 @@ package com.ll;
 
 public class Calc {
   public static int run(String exp) {
+    int sum = 0;
 
-    String[] bits = exp.split(" \\+ ");
+    if (exp.contains("+")) {
+      String[] bits = exp.split(" \\+ ");
 
-    int a = Integer.parseInt(bits[0]);
-    int b = Integer.parseInt(bits[1]);
+      int a = Integer.parseInt(bits[0]);
+      int b = Integer.parseInt(bits[1]);
+      sum = a + b;
+      return sum;
 
-    return a + b;
+    } else if (exp.contains("-")) {
+      String[] bits = exp.split(" - ");
+
+      int a = Integer.parseInt(bits[0]);
+      int b = Integer.parseInt(bits[1]);
+
+      sum = a - b;
+      return sum;
+
+    }
+    return sum;
   }
 }
