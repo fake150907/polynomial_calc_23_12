@@ -2,19 +2,44 @@ package com.ll;
 
 public class Calc {
   public static int run(String exp) {
-    // TDD의 효과
-    // 문제가 되는 이 녀석을 직접 여기다가 대입해서 눈으로든 머리로든 손으로든 돌려보면 어디서 잘못된게 보인다.
+    exp = exp.trim();
     exp = stripOuterBracket(exp);
+
+    // 연산기호가 없으면 바로 리턴
+    if (!exp.contains(" ")) return Integer.parseInt(exp);
 
     boolean needToMultiply = exp.contains(" * ");
     boolean needToPlus = exp.contains(" + ") || exp.contains(" - ");
-    boolean needToCompound = needToPlus && needToMultiply;
 
-    if (needToCompound) {
+    boolean needToCompound = needToMultiply && needToPlus;
+    boolean needToSplit = exp.contains("(") || exp.contains(")");
+
+    if (needToSplit) {  // (20 + 20) + 20
+      int bracketCount = 0;
+      int splitPointIndex = -1;
+
+      for (int i = 0; i < exp.length(); i++) {
+        if (exp.charAt(i) == '(') {
+          bracketCount++;
+        } else if (exp.charAt(i) == ')') {
+          bracketCount--;
+        }
+        if (bracketCount == 0) {
+          splitPointIndex = i;
+          break;
+        }
+      }
+
+      String firstExp = exp.substring(0, splitPointIndex + 1);
+      String secondExp = exp.substring(splitPointIndex + 3);
+
+      return Calc.run(firstExp) + Calc.run(secondExp);
+
+    } else if (needToCompound) {
       String[] bits = exp.split(" \\+ ");
-      return Integer.parseInt(bits[0]) + run(bits[1]);
-    }
 
+      return Integer.parseInt(bits[0]) + run(bits[1]); // TODO
+    }
     if (needToPlus) {
       exp = exp.replaceAll("\\- ", "\\+ \\-");
 
@@ -42,9 +67,15 @@ public class Calc {
   }
 
   private static String stripOuterBracket(String exp) {
-    if (exp.charAt(0) == '(' && exp.charAt(exp.length() - 1) == ')') {
-      exp = exp.substring(1, exp.length() - 1);
+    int outerBracketCount = 0;
+
+    while (exp.charAt(outerBracketCount) == '(' && exp.charAt(exp.length() - 1 - outerBracketCount) == ')') {
+      outerBracketCount++;
     }
-    return exp;
+
+    if (outerBracketCount == 0) return exp;
+
+
+    return exp.substring(outerBracketCount, exp.length() - outerBracketCount);
   }
 }
