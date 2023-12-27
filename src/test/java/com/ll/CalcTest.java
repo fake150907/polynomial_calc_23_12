@@ -42,4 +42,23 @@ public class CalcTest {
   void t6() {
     assertThat(Calc.run("50 - 30")).isEqualTo(20);
   }
+
+  @Test
+  @DisplayName("3 - 1 == 2")
+  void t7() {
+    assertThat(Calc.run("3 - 1")).isEqualTo(2);
+  }
+
+  @Test
+  @DisplayName("20 + 20 + 30 == 70")
+  void t8() {
+    assertThat(Calc.run("20 + 20 + 30")).isEqualTo(70);
+  }
+
+  @Test
+  @DisplayName("10 - 20 + 30 == 20")
+  void t9() {
+    assertThat(Calc.run("10 - 20 + 30")).isEqualTo(20);
+  }
+
 }
