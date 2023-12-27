@@ -2,18 +2,18 @@ package com.ll;
 
 public class Calc {
   public static int run(String exp) {
-    boolean needToMultiply = exp.contains("*");
-    boolean needToPlus = exp.contains("+");
-    boolean needToMinus = exp.contains(" - ");
+    // TDD의 효과
+    // 문제가 되는 이 녀석을 직접 여기다가 대입해서 눈으로든 머리로든 손으로든 돌려보면 어디서 잘못된게 보인다.
+    boolean needToMultiply = exp.contains(" * ");
+    boolean needToPlus = exp.contains(" + ") || exp.contains(" - ");
     boolean needToCompound = needToPlus && needToMultiply;
-
 
     if (needToCompound) {
       String[] bits = exp.split(" \\+ ");
       return Integer.parseInt(bits[0]) + run(bits[1]);
     }
 
-    if (needToPlus || needToMinus) {
+    if (needToPlus) {
       exp = exp.replaceAll("\\- ", "\\+ \\-");
 
       String[] bits = exp.split(" \\+ ");
