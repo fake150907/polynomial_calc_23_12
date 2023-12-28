@@ -193,4 +193,16 @@ public class CalcTest {
     assertThat(Calc.run("-(7 + 3) * -(8 + 2) + 5")).isEqualTo(105);
   }
 
+  @Test
+  @DisplayName("-(7 + 3) * -(8 + 2) == 100")
+  void t32() {
+    assertThat(Calc.run("-(7 + 3) * -(8 + 2)")).isEqualTo(100);
+  }
+
+  @Test
+  @DisplayName("(7 + 3) * (8 + 2) == 100")
+  void t33() {
+    assertThat(Calc.run("(7 + 3) * (8 + 2)")).isEqualTo(100);
+  }
+
 }
