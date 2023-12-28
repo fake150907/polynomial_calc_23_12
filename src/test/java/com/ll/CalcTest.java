@@ -169,4 +169,10 @@ public class CalcTest {
     assertThat(Calc.run("100 + (10 + 5)")).isEqualTo(115);
   }
 
+  @Test
+  @DisplayName("100 + (10 + 5)  * (2 + 3) == 115")
+  void t28() {
+    assertThat(Calc.run("100 + (10 + 5) * (2 + 3)")).isEqualTo(175);
+  }
+
 }
