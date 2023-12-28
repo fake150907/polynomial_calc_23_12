@@ -170,9 +170,27 @@ public class CalcTest {
   }
 
   @Test
-  @DisplayName("100 + (10 + 5)  * (2 + 3) == 115")
+  @DisplayName("-(10 + 5) == 15")
   void t28() {
-    assertThat(Calc.run("100 + (10 + 5) * (2 + 3)")).isEqualTo(175);
+    assertThat(Calc.run("-(10 + 5)")).isEqualTo(-15);
+  }
+
+  @Test
+  @DisplayName("3 * -(10 + 5) == -45")
+  void t29() {
+    assertThat(Calc.run("3 * -(10 + 5)")).isEqualTo(-45);
+  }
+
+  @Test
+  @DisplayName("-(10 + 5) + 3 == -12")
+  void t30() {
+    assertThat(Calc.run("-(10 + 5) + 3")).isEqualTo(-12);
+  }
+
+  @Test
+  @DisplayName("-(7 + 3) * -(8 + 2) + 5 == 105")
+  void t31() {
+    assertThat(Calc.run("-(7 + 3) * -(8 + 2) + 5")).isEqualTo(105);
   }
 
 }
