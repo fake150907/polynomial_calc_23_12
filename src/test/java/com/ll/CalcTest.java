@@ -205,4 +205,39 @@ public class CalcTest {
     assertThat(Calc.run("(7 + 3) * (8 + 2)")).isEqualTo(100);
   }
 
+  @Test
+  @DisplayName("5 - (1 + 5) == -1")
+  void t34() {
+    assertThat(Calc.run("5 - (1 + 5)")).isEqualTo(-1);
+  }
+
+  @Test
+  @DisplayName("3 * 1 + (1 - (4 * 1 - (1 - 1))) == 0")
+  void t35() {
+    assertThat(Calc.run("3 * 1 + (1 - (4 * 1 - (1 - 1)))")).isEqualTo(0);
+  }
+
+  @Test
+  @DisplayName("1 * 2 + 3 == 5")
+  void t36() {
+    assertThat(Calc.run("1 * 2 + 3")).isEqualTo(5);
+  }
+
+  @Test
+  @DisplayName("1 * 2 + 3 * 2 - 1 - 2 == 5")
+  void t37() {
+    assertThat(Calc.run("1 * 2 + 3 * 2 - 1 - 2")).isEqualTo(5);
+  }
+
+  @Test
+  @DisplayName("1 * 2 + 3 * 2 - 1 == 7")
+  void t38() {
+    assertThat(Calc.run("1 * 2 + 3 * 2 - 1")).isEqualTo(7);
+  }
+
+  @Test
+  @DisplayName("1 * 2 - 3 == -1")
+  void t39() {
+    assertThat(Calc.run("1 * 2 - 3")).isEqualTo(-1);
+  }
 }
